@@ -1,0 +1,159 @@
+.admin-header {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  /* box-shadow: 0 5px 10px 1px black; */
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  font-family: "Lato", sans-serif;
+}
+.header-icon h2 span {
+  color: #007bff;
+}
+.header-icon img {
+  width: 90px;
+}
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  font-family: "Lato", sans-serif;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+a {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  color: #000;
+}
+aside {
+  display: flex;
+}
+section {
+  background: linear-gradient(to bottom, #00cdff 0%, #007b99 100%);
+  width: 100%;
+}
+.sidebar button {
+  background-color: hsl(192, 17%, 89%);
+  color: black;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  width: 120px;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+}
+.items {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  /* justify-content: space-evenly; */
+  gap: 20px;
+}
+.items1 {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  display: none;
+}
+
+.hospital,
+.health,
+.admin-customers {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hospital,
+.health,
+.admin-customers h5 {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+.hidden {
+  position: absolute;
+  top: 65px;
+  display: none;
+}
+@media screen and (max-width: 480px) {
+  /* section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  } */
+  .header-icon img {
+    width: 100px;
+  }
+  .admin-logo h5 {
+    font-size: 12px;
+  }
+  .sidebar {
+    display: none;
+  }
+  .hidden {
+    display: block;
+  }
+  a {
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+  }
+  .hospital,
+  .health,
+  .admin-customers h5 {
+    font-size: 14px;
+  }
+  .dash {
+    height: 35px;
+    align-items: center;
+    display: flex;
+  }
+  .dash button {
+    font-size: 14px;
+    background-color: #dde5e7;
+    color: black;
+    border: none;
+    padding: 5px;
+    width: 100px;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+  }
+
+  .items1 {
+    margin-top: 35px;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: #fafbfbe7;
+    width: 100%;
+    height: 290px;
+    animation: slide 0.6s linear;
+  }
+  @keyframes slide {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+}
