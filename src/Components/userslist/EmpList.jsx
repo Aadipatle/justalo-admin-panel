@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './EmpList.css'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-function App() {
+function Emplist() {
     const [data, setData] = useState([
         {
             id: 1,
@@ -184,7 +184,7 @@ function App() {
                             {data.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                    <Link to={`/admin/users/${item.id}`}>
+                                    <Link to={`/users/${item.id}`}>
                                     {item.FullName}
                                 </Link>
                                     <td>{item.PhoneNumber}</td>
@@ -205,4 +205,4 @@ function App() {
 }
 
 
-export default App;
+export default Emplist;

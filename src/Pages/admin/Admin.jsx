@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Admin.css'
 import logo from '../../Assets/admin/justalo.png'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { FaHeart, FaHospital, FaUser } from 'react-icons/fa'
 
 
 function Admin() {
     const [icon, setIcon] = useState(false)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const token = sessionStorage.getItem('token');  
+      if (!token) {
+        navigate('/login');
+      }  
+    }, [navigate]);
     return (
         <>
             <header className='admin-header'>
@@ -26,7 +34,7 @@ function Admin() {
                 <div className='sidebar'>
                     <div className="items">
                         <div className="dash">
-                            <Link to='/admin'><button>Dashboard</button></Link>
+                            <Link to='/'><button>Dashboard</button></Link>
 
                         </div>
                         <div className="category">
