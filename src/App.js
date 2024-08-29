@@ -10,6 +10,7 @@ import Login from './Pages/login/Login';
 import PrivateRoute from './Components/protected/Private';
 import Vendors from './Components/vendorlist/Vendors';
 import Vendor from './Components/vendor/Vendor';
+import { useEffect, useState } from 'react';
  
 function App() {
   const token = sessionStorage.getItem('token');
@@ -30,6 +31,25 @@ function App() {
       // </BrowserRouter>
 
 
+      const [data, setData] = useState([]);
+
+    useEffect(() => {
+        async function getData() {
+            try {
+                let url = 'http://68.183.87.102:8080/AllVendor';
+                let response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                let emp = await response.json();
+                setData(emp);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        getData();
+    }, []);
+
   return (
     <>
       <BrowserRouter>
@@ -45,12 +65,11 @@ function App() {
             </PrivateRoute>
           }
         >
-          <Route path="" element={<Dashboard />} />
+          <Route path="" element={<Dashboard allvendor={data}/>} />
           <Route path="users" element={<EmpList />} />
-          <Route path="vendors" element={<Vendors />} />
-          <Route path="vendors/:vendorId" element={<Vendor/>} />
+          <Route path="vendors" element={<Vendors dat={data}/>} />
+          <Route path="vendors/:vendorId" element={<Vendor vendor={data}/>} />
           <Route path="users/:userId" element={<User />} />
-          <Route path="vendors" element={<h1>Welcome</h1>} />
           <Route path="tickets" element={<h1>Welcome</h1>} />
         </Route>
       </Routes>

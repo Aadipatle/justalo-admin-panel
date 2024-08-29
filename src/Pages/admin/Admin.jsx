@@ -22,9 +22,7 @@ function Admin() {
                     <img src={logo} alt="" />
                     <h2><span>Ab Safar Me,</span>  No Suffer</h2>
                 </div>
-                <div className="admin-logo">
-                    <h5><FaUser /> Admin@gmail.com</h5>
-                </div>
+              
             </header>
             <hr />
             <aside>

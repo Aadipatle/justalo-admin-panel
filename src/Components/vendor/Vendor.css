@@ -1,0 +1,15 @@
+.card-content img{
+    border-radius: 18px;
+}
+.card-content h1{
+    text-align: left;
+}
+.docs{
+    position: absolute;
+    left: 36%;
+    padding: 12px;
+    top: 15%;
+}
+.docs img{
+    margin: 5px;
+}

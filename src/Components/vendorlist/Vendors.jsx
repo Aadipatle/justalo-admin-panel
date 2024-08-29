@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-function Vendors() {
-    const [data, setData] = useState([]);
-    let navigate = useNavigate()
+function Vendors({dat}) {
+    // const [data, setData] = useState([]);
+    // let navigate = useNavigate()
 
-    useEffect(() => {
-        async function getData() {
-            try {
-                let url = 'http://68.183.87.102:8080/AllVendor';
-                let response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                let emp = await response.json();
-                setData(emp);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        getData();
-    }, []);
+    // useEffect(() => {
+    //     async function getData() {
+    //         try {
+    //             let url = 'http://68.183.87.102:8080/AllVendor';
+    //             let response = await fetch(url);
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! status: ${response.status}`);
+    //             }
+    //             let emp = await response.json();
+    //             setData(emp);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     }
+    //     getData();
+    // }, []);
  
     return (
         <>
@@ -40,7 +40,7 @@ function Vendors() {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item, index) => (
+                            {dat.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <Link to={`/vendors/${item.id}`}>
