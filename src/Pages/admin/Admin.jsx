@@ -7,14 +7,25 @@ import { FaHeart, FaHospital, FaUser } from 'react-icons/fa'
 
 function Admin() {
     const [icon, setIcon] = useState(false)
+    const [payment, setPayment] = useState(false)
+    const [boarding, setBoarding] = useState(false)
     const navigate = useNavigate();
 
     useEffect(() => {
-      const token = sessionStorage.getItem('token');  
-      if (!token) {
-        navigate('/login');
-      }  
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+        }
     }, [navigate]);
+    function onPay(req) {
+        if (req === 'payment') {
+            setPayment(!payment)
+        } else if (req === 'boarding') {
+            setBoarding(!boarding)
+        }
+
+
+    }
     return (
         <>
             <header className='admin-header'>
@@ -22,7 +33,7 @@ function Admin() {
                     <img src={logo} alt="" />
                     <h2><span>Ab Safar Me,</span>  No Suffer</h2>
                 </div>
-              
+
             </header>
             <hr />
             <aside>
@@ -37,12 +48,28 @@ function Admin() {
                         </div>
                         <div className="category">
                             <Link to=''>Tatal Users</Link>
+                            <hr />
                             <Link to=''>Total Vendor</Link>
                             <Link to=''>Total Revenue</Link>
                             <Link to=''>Total Tickets</Link>
-                            <Link to=''>Payment Settelment</Link>
-                            <Link to=''>Bording Points</Link>
-                           
+                            <Link onClick={() => onPay('payment')} >Payment Settelment</Link>
+                            {
+                                payment && (<>
+                                    <Link to=''>Pending</Link>
+                                    <Link to=''>Complate</Link>
+                                </>
+                                )
+                            }
+                            <hr />
+                            <Link onClick={() => onPay('boarding')}>Bording Points</Link>
+                            {
+                                boarding && (<>
+                                    <Link to='/city'>Add Boarding Points</Link>
+                                    <Link to='/citylist'>Boarding Points List</Link>
+                                </>
+                                )
+                            }
+
                         </div>
 
                     </div>

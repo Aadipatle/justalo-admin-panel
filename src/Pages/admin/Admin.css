@@ -1,9 +1,10 @@
 .admin-header {
-  height: 100px;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px;
+  background-color: #27d8fb;
   /* box-shadow: 0 5px 10px 1px black; */
 }
 
@@ -13,7 +14,7 @@
   font-family: "Lato", sans-serif;
 }
 .header-icon h2 span {
-  color: #007bff;
+  color: #ffffff;
 }
 .header-icon img {
   width: 90px;
@@ -21,7 +22,7 @@
 .sidebar {
   height: 100vh;
   width: 250px;
-  background-color: #fff;
+  background-color: #27d8fb;;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,11 +40,12 @@ a {
   text-decoration: none;
   color: #000;
 }
+
 aside {
   display: flex;
 }
 section {
-  background: linear-gradient(to bottom, #00cdff 0%, #007b99 100%);
+  /* background: linear-gradient(to bottom, #00cdff 0%, #007b99 100%); */
   width: 100%;
 }
 .sidebar button {

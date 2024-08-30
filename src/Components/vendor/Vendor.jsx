@@ -24,22 +24,22 @@ function Vendor({ vendor }) {
     //     getData();
     // }, []);
 
-    useEffect(() => {
-        async function getDriver() {
-            try {
-                let url = `http://68.183.87.102:8080/AllDriverByPerticularVendor/${vendorId}`;
-                let response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                let allDriver = await response.json();
-                setDrivers(allDriver);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        getDriver();
-    }, []);
+    // useEffect(() => {
+    //     async function getDriver() {
+    //         try {
+    //             let url = `http://68.183.87.102:8080/AllDriverByPerticularVendor/${vendorId}`;
+    //             let response = await fetch(url);
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! status: ${response.status}`);
+    //             }
+    //             let allDriver = await response.json();
+    //             setDrivers(allDriver);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     }
+    //     getDriver();
+    // }, []);
 
     let newVendor = vendor.filter((e) => e.id === parseInt(vendorId));
     console.log(newVendor)

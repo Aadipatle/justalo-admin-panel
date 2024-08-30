@@ -1,0 +1,91 @@
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    display: block;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+/* City and Boarding Point Data Styling */
+.city {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #007bff;
+    border-radius: 8px;
+}
+
+.city p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.boarding-point {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.boarding-point p {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    .city {
+        padding: 15px;
+    }
+
+    .boarding-point {
+        padding-left: 10px;
+    }
+}

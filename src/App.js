@@ -11,6 +11,9 @@ import PrivateRoute from './Components/protected/Private';
 import Vendors from './Components/vendorlist/Vendors';
 import Vendor from './Components/vendor/Vendor';
 import { useEffect, useState } from 'react';
+import Cities from './Components/cities/Cities';
+import CityForm from './Components/cities/Cities';
+import CityList from './Components/citylist/CityList';
  
 function App() {
   const token = sessionStorage.getItem('token');
@@ -35,17 +38,27 @@ function App() {
 
     useEffect(() => {
         async function getData() {
-            try {
-                let url = 'http://68.183.87.102:8080/AllVendor';
-                let response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+          try {
+            let url = 'http://68.183.87.102:8080/AllVendor';
+            let token = sessionStorage.getItem('token') 
+    
+            let response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`, 
+                    'Content-Type': 'application/json'  
                 }
-                let emp = await response.json();
-                setData(emp);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+            });
+    
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+    
+            let emp = await response.json();
+            setData(emp);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
         }
         getData();
     }, []);
@@ -71,6 +84,8 @@ function App() {
           <Route path="vendors/:vendorId" element={<Vendor vendor={data}/>} />
           <Route path="users/:userId" element={<User />} />
           <Route path="tickets" element={<h1>Welcome</h1>} />
+          <Route path="city" element={<CityForm/>} />
+          <Route path="citylist" element={<CityList/>} />
         </Route>
       </Routes>
     </BrowserRouter>
