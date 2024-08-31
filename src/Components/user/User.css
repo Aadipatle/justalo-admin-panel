@@ -2,6 +2,10 @@
     height: 600px;
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
+}
+.userwrapper h2{
+    margin-left: 10px;
 }
 .bus-card {
     border: 1px solid #ddd;
@@ -12,6 +16,36 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     /* margin: auto; */
+    height: auto;
+}
+.bus-card1 {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    /* margin: auto; */
+    height: 200px;
+}
+.bus-card2 {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+    gap: 5px;
+}
+.bus-card2 button{
+    width: 150px;
+
 }
 
 .card-content h3 {

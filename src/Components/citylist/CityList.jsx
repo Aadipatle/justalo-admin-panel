@@ -49,7 +49,7 @@ function CityList() {
                         <div className="boarding-points">
                             <h3>Boarding Points:</h3>
                             {city.boardingPoints.map((point, pointIndex) => (
-                                <div key={pointIndex} className="boarding-point">
+                                 <div key={pointIndex} className="boarding-point">
                                     <h4>{point.name}</h4>
                                     <p>Longitude: {point.longitude}</p>
                                     <p>Latitude: {point.latitude}</p>

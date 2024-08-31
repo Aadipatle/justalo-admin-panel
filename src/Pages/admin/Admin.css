@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background-color: #27d8fb;
+  background-color: #0cc1e0;
   /* box-shadow: 0 5px 10px 1px black; */
 }
 
@@ -12,17 +12,20 @@
   display: flex;
   align-items: center;
   font-family: "Lato", sans-serif;
+  padding: 5px;
+  gap: 12px;
 }
 .header-icon h2 span {
   color: #ffffff;
 }
 .header-icon img {
-  width: 90px;
+  width: 80px;
+  
 }
 .sidebar {
   height: 100vh;
   width: 250px;
-  background-color: #27d8fb;;
+  background-color: #0cc1e0;
   display: flex;
   flex-direction: column;
   align-items: center;

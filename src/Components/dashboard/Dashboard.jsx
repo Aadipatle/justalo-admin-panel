@@ -1,7 +1,7 @@
 import React from 'react'
 import './Dashboard.css'
 
-import { FaUsers, FaIndianRupeeSign, FaTicketSimple } from "react-icons/fa6";
+import { FaUsers, FaIndianRupeeSign, FaTicketSimple, FaCar, FaTable } from "react-icons/fa6";
 import { FaHospitalUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
@@ -36,45 +36,40 @@ function Dashboard({allvendor}){
         </div>
         <div className="admin-hospital">
           <div className="requests">
-            <div className="request">
+            <div className="request request1">
               <h4>Total Revenue</h4>
               <h6 className='a'>500000.00</h6>
               <button>view➡</button>
               <FaIndianRupeeSign className='img' />
             </div>
-            <div className="request">
+            <div className="request request1">
               <h4>Total Users</h4>
               <h6 className='a'>200</h6>
               <button>view➡</button>
               <FaUsers className='img' />
             </div>
-            <div className="request">
-              <h4>Total Users</h4>
-              <h6 className='a'>200</h6>
-              <button>view➡</button>
-              <FaUsers className='img' />
-            </div>
+            
           </div>
         </div>
         <div className="admin-hospital">
           <div className="requests">
             <div className="request">
-              <h4>Total Users</h4>
+              <h4>AC Vehicle</h4>
               <h6 className='a'>200</h6>
               <button>view➡</button>
-              <FaUsers className='img' />
+              <FaCar className='img' />
             </div>
             <div className="request">
-              <h4>Total Users</h4>
+              <h4>Non-AC Vehicle</h4>
               <h6 className='a'>200</h6>
               <button>view➡</button>
-              <FaUsers className='img' />
+              <FaCar className='img' />
             </div>
             <div className="request">
-              <h4>Total Users</h4>
+              <h4>Total Counter</h4>
               <h6 className='a'>200</h6>
               <button>view➡</button>
-              <FaUsers className='img' />
+              <FaTable className='img' />
             </div>
           </div>
         </div>

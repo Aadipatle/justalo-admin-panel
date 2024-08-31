@@ -35,7 +35,6 @@ function Admin() {
                 </div>
 
             </header>
-            <hr />
             <aside>
                 <div className="hidden" onClick={() => {
                     setIcon(!icon)
@@ -47,20 +46,22 @@ function Admin() {
 
                         </div>
                         <div className="category">
-                            <Link to=''>Tatal Users</Link>
+                            <Link to=''>Manage User</Link>
                             <hr />
-                            <Link to=''>Total Vendor</Link>
-                            <Link to=''>Total Revenue</Link>
-                            <Link to=''>Total Tickets</Link>
-                            <Link onClick={() => onPay('payment')} >Payment Settelment</Link>
+                            <Link onClick={() => onPay('payment')} >Payment History</Link>
                             {
                                 payment && (<>
-                                    <Link to=''>Pending</Link>
-                                    <Link to=''>Complate</Link>
+                                    <Link to=''>Pending </Link>
+                                    <Link to=''>Successful </Link>
+                                    <Link to=''>Rejected </Link>
+                                    <Link to=''>All Payment</Link>
                                 </>
                                 )
                             }
                             <hr />
+                            <Link to=''>Booking History</Link>
+                            <Link to=''>Total Tickets</Link>
+                          
                             <Link onClick={() => onPay('boarding')}>Bording Points</Link>
                             {
                                 boarding && (<>

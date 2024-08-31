@@ -5,11 +5,44 @@
     text-align: left;
 }
 .docs{
-    position: absolute;
-    left: 36%;
-    padding: 12px;
-    top: 15%;
+ display: flex;
 }
 .docs img{
     margin: 5px;
+}
+.driver{
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+   margin-left: 5px;
+    box-sizing: border-box;
+}
+.driver1{
+    position: absolute;
+    top: 280px;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+   margin-left: 5px;
+    box-sizing: border-box;
+}
+.driver h5{
+    font-size: 21px;
+    margin-top: 20px;
 }

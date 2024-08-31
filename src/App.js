@@ -11,28 +11,13 @@ import PrivateRoute from './Components/protected/Private';
 import Vendors from './Components/vendorlist/Vendors';
 import Vendor from './Components/vendor/Vendor';
 import { useEffect, useState } from 'react';
-import Cities from './Components/cities/Cities';
 import CityForm from './Components/cities/Cities';
 import CityList from './Components/citylist/CityList';
+import Driver from './Components/driver/Driver';
+import Buses from './Components/bus/Buses';
  
 function App() {
   const token = sessionStorage.getItem('token');
-     // <BrowserRouter>
-      //   <ScrollToTop />
-      //   <Routes>
-      //   <Route element={<Signup />} path='/singup' />
-      //   <Route element={<Login />} path='/' />
-      //     <Route element={<Admin />} path='/admin/' >
-      //       <Route element={<Dashboard />} path='' />
-      //       <Route element={<EmpList />} path='users' />
-      //       <Route element={<User />} path='users/:userId' />
-      //       <Route element={<h1>Welcome </h1>} path='vendors' />
-      //       <Route element={<h1>Welcome </h1>} path='tickets' />
-      //     </Route>
-        
-      //   </Routes>
-      // </BrowserRouter>
-
 
       const [data, setData] = useState([]);
 
@@ -86,6 +71,8 @@ function App() {
           <Route path="tickets" element={<h1>Welcome</h1>} />
           <Route path="city" element={<CityForm/>} />
           <Route path="citylist" element={<CityList/>} />
+          <Route path="driver/:userId" element={<Driver/>} />
+          <Route path="bus/:userId" element={<Buses/>} />
         </Route>
       </Routes>
     </BrowserRouter>

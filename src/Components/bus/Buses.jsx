@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-function Vendors() {
+function Buses() {
     const [data, setData] = useState([]);
-    let navigate = useNavigate()
+    let {userId}=useParams()
+
     useEffect(() => {
         async function getData() {
           try {
-            let url = 'http://68.183.87.102:8080/AllVendor';
+            let url = `http://68.183.87.102:8080/getAllBusByPerticularVendor/${userId}`;
             let token = sessionStorage.getItem('token') 
     
             let response = await fetch(url, {
@@ -31,13 +32,14 @@ function Vendors() {
         getData();
     }, []);
 
+    console.log(data)
     const handleVerify = async (id, status) => {
         try {
-            let url = `http://68.183.87.102:8080/markVerified/${id}`;
+            let url = `http://68.183.87.102:8080/verifiedBus/${id}`;
             let token = sessionStorage.getItem('token');
 
             let response = await fetch(url, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -70,7 +72,7 @@ function Vendors() {
                                 <th>Full Name</th>
                                 <th>Phone Number</th>
                                 <th>Email</th>
-                                <th>Organization</th>
+                                <th>License Number</th>
                                 <th>Address</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -81,14 +83,14 @@ function Vendors() {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                    <td> <Link to={`/vendors/${item.id}`}>
-                                        {item.username}
+                                        {item.bus_number}
                                     </Link>
                                     </td>
-                                    <td>{item.phone_number}</td>
-                                    <td>{item.email}</td>
-                                    <td>{item.organization_name}</td>
-                                    <td>{item.address}</td>
-                                    <td>{item.verification_status ? '☑' :'❌'}</td>
+                                    <td>{item.chassis_num}</td>
+                                    <td>{item.insurance_no}</td>
+                                    <td>{item.no_of_row}</td>
+                                    <td>{item.layout}</td>
+                                    <td>{item.verified ? '☑' :'❌'}</td>
                                     <td> <button onClick={() => handleVerify(item.id, true)}>Verify</button>
                                  </td>
 
@@ -103,4 +105,4 @@ function Vendors() {
 }
 
 
-export default Vendors;
+export default Buses;
