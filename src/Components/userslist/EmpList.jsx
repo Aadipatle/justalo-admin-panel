@@ -8,10 +8,10 @@ function Emplist() {
             id: 1,
             FullName: "John Doe",
             PhoneNumber: "123-456-7890",
-            Ticket: 345,
+            Ticket: 5,
             TotalAmt: "56.75",
-            BusNumber: "Bus-101",
-            Status: "Confirmed",
+            BusNumber: "Mumbai",
+            Status: "Active",
             Email: "johndoe@example.com",
             Verified: true
         },
@@ -19,10 +19,10 @@ function Emplist() {
             id: 2,
             FullName: "Jane Smith",
             PhoneNumber: "234-567-8901",
-            Ticket: 678,
+            Ticket: 8,
             TotalAmt: "78.50",
-            BusNumber: "Bus-202",
-            Status: "Pending",
+            BusNumber: "Wardha",
+            Status: "Active",
             Email: "janesmith@example.com",
             Verified: false
         },
@@ -30,10 +30,10 @@ function Emplist() {
             id: 3,
             FullName: "Alice Johnson",
             PhoneNumber: "345-678-9012",
-            Ticket: 123,
+            Ticket: 1,
             TotalAmt: "45.25",
-            BusNumber: "Bus-303",
-            Status: "Cancelled",
+            BusNumber: "Bhopal",
+            Status: "Blocked",
             Email: "alicejohnson@example.com",
             Verified: true
         },
@@ -41,10 +41,10 @@ function Emplist() {
             id: 4,
             FullName: "Bob Brown",
             PhoneNumber: "456-789-0123",
-            Ticket: 789,
+            Ticket: 3,
             TotalAmt: "65.00",
-            BusNumber: "Bus-404",
-            Status: "Confirmed",
+            BusNumber: "Ujjain",
+            Status: "Active",
             Email: "bobbrown@example.com",
             Verified: true
         },
@@ -52,10 +52,10 @@ function Emplist() {
             id: 5,
             FullName: "Charlie Davis",
             PhoneNumber: "567-890-1234",
-            Ticket: 456,
+            Ticket: 9,
             TotalAmt: "89.99",
-            BusNumber: "Bus-505",
-            Status: "Pending",
+            BusNumber: "Chandrapur",
+            Status: "Active",
             Email: "charliedavis@example.com",
             Verified: false
         },
@@ -63,10 +63,10 @@ function Emplist() {
             id: 6,
             FullName: "Emily White",
             PhoneNumber: "678-901-2345",
-            Ticket: 890,
+            Ticket: 1,
             TotalAmt: "72.30",
-            BusNumber: "Bus-606",
-            Status: "Confirmed",
+            BusNumber: "Amravati",
+            Status: "Active",
             Email: "emilywhite@example.com",
             Verified: true
         },
@@ -74,10 +74,10 @@ function Emplist() {
             id: 7,
             FullName: "David Green",
             PhoneNumber: "789-012-3456",
-            Ticket: 234,
+            Ticket: 5,
             TotalAmt: "50.50",
-            BusNumber: "Bus-707",
-            Status: "Cancelled",
+            BusNumber: "Indore",
+            Status: "Blocked",
             Email: "davidgreen@example.com",
             Verified: false
         },
@@ -85,10 +85,10 @@ function Emplist() {
             id: 8,
             FullName: "Sophia Brown",
             PhoneNumber: "890-123-4567",
-            Ticket: 901,
+            Ticket: 7,
             TotalAmt: "82.75",
-            BusNumber: "Bus-808",
-            Status: "Pending",
+            BusNumber: "Balaghat",
+            Status: "Blocked",
             Email: "sophiabrown@example.com",
             Verified: true
         },
@@ -96,10 +96,10 @@ function Emplist() {
             id: 9,
             FullName: "Michael Scott",
             PhoneNumber: "901-234-5678",
-            Ticket: 567,
+            Ticket: 0,
             TotalAmt: "65.89",
-            BusNumber: "Bus-909",
-            Status: "Confirmed",
+            BusNumber: "Raipur",
+            Status: "Active",
             Email: "michaelscott@example.com",
             Verified: true
         },
@@ -107,10 +107,10 @@ function Emplist() {
             id: 10,
             FullName: "Olivia Johnson",
             PhoneNumber: "012-345-6789",
-            Ticket: 123,
+            Ticket: 1,
             TotalAmt: "94.20",
-            BusNumber: "Bus-010",
-            Status: "Pending",
+            BusNumber: "Nagpur",
+            Status: "Active",
             Email: "oliviajohnson@example.com",
             Verified: false
         }
@@ -176,7 +176,7 @@ function Emplist() {
                                 <th>Email</th>
                                 <th>Ticket</th>
                                 <th>Total Amt.</th>
-                                <th>Bus Number</th>
+                                <th>Location</th>
                                 <th>Status</th>
                             </tr>
                         </thead>

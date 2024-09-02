@@ -5,7 +5,7 @@ import { FaUsers, FaIndianRupeeSign, FaTicketSimple, FaCar, FaTable } from "reac
 import { FaHospitalUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
-function Dashboard({allvendor}){
+function Dashboard({allvendor,rent}){
   let navigate = useNavigate()
 
   return (
@@ -28,7 +28,7 @@ function Dashboard({allvendor}){
             </div>
             <div className="request">
               <h4>Total Tickets</h4>
-              <h6 className='a'>500</h6>
+              <h6 className='a'>3</h6>
               <button onClick={() => navigate('tickets')}>view➡</button>
               <FaTicketSimple className='img' />
             </div>
@@ -39,13 +39,13 @@ function Dashboard({allvendor}){
             <div className="request request1">
               <h4>Total Revenue</h4>
               <h6 className='a'>500000.00</h6>
-              <button>view➡</button>
+              <button onClick={() => navigate('paymenthistory')}>view➡</button>
               <FaIndianRupeeSign className='img' />
             </div>
             <div className="request request1">
-              <h4>Total Users</h4>
-              <h6 className='a'>200</h6>
-              <button>view➡</button>
+              <h4>Rent Vehicles</h4>
+              <h6 className='a'>{rent.length}</h6>
+              <button onClick={() => navigate('rentvehicles')}>view➡</button>
               <FaUsers className='img' />
             </div>
             

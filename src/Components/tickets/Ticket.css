@@ -1,0 +1,38 @@
+.tbtn{
+    display: flex;
+}
+button {
+    margin-right: 10px;
+    padding: 10px;
+    
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn1{
+    background-color: #007bff;
+  }
+  .btn2{
+    background-color: #00c961;
+  }
+  .btn3{
+    background-color: #ff0044;
+  }
+  
+  button:hover {
+    opacity: .7;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+  

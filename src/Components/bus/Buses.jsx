@@ -69,11 +69,11 @@ function Buses() {
                         <thead>
                             <tr>
                                 <th>Sr No</th>
-                                <th>Full Name</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
-                                <th>License Number</th>
-                                <th>Address</th>
+                                <th>Bus Number</th>
+                                <th>Chassis Number</th>
+                                <th>Insurance Number</th>
+                                <th>No. Of Row</th>
+                                <th>Layout</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -93,7 +93,6 @@ function Buses() {
                                     <td>{item.verified ? '☑' :'❌'}</td>
                                     <td> <button onClick={() => handleVerify(item.id, true)}>Verify</button>
                                  </td>
-
                                 </tr>
                             ))}
                         </tbody>

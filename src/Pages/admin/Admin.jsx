@@ -46,7 +46,9 @@ function Admin() {
 
                         </div>
                         <div className="category">
-                            <Link to=''>Manage User</Link>
+                            <Link to='users'>Manage User</Link>
+                            <hr />
+                            <Link to='vendors'>Manage Vendor</Link>
                             <hr />
                             <Link onClick={() => onPay('payment')} >Payment History</Link>
                             {
@@ -59,18 +61,18 @@ function Admin() {
                                 )
                             }
                             <hr />
-                            <Link to=''>Booking History</Link>
-                            <Link to=''>Total Tickets</Link>
-                          
+                            <Link to='tickets'>Booking History</Link>
+                            <hr />
                             <Link onClick={() => onPay('boarding')}>Bording Points</Link>
                             {
                                 boarding && (<>
-                                    <Link to='/city'>Add Boarding Points</Link>
-                                    <Link to='/citylist'>Boarding Points List</Link>
+                                    <Link to='/city'>Add Points</Link>
+                                    <Link to='/citylist'>All List</Link>
                                 </>
                                 )
                             }
-
+                                 <hr />
+                            <Link to='/rentvehicles'>Rent Vehicle</Link>
                         </div>
 
                     </div>

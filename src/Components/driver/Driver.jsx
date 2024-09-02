@@ -82,7 +82,7 @@ function Driver() {
                             {data.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                   <td> <Link to={`/vendors/${item.id}`}>
+                                   <td> <Link to={`/singledriver/${item.id}`}>
                                         {item.driver_name}
                                     </Link>
                                     </td>
