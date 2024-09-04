@@ -72,14 +72,31 @@ const App = () => {
     };
 
     const fetchCoordinates = async (locationName) => {
-        const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${locationName}&format=json`);
-        const data = await response.json();
-        if (data.length > 0) {
-            const { lon, lat } = data[0];
-            return { longitude: lon, latitude: lat };
+        const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locationName)}&format=json`;
+    
+        try {
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const data = await response.json();
+            
+            if (data.length > 0) {
+                const { lon, lat } = data[0];
+                return { longitude: lon, latitude: lat };
+            }
+            
+            console.warn('No coordinates found for the given location.');
+            return { longitude: '', latitude: '' };
+    
+        } catch (error) {
+            console.error('An error occurred while fetching coordinates:', error);
+            return { longitude: '', latitude: '' };
         }
-        return { longitude: '', latitude: '' };
     };
+    
 
     return (
         <div className='bodyy'>

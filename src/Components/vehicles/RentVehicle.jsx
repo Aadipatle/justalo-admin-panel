@@ -33,7 +33,7 @@ const VehicleTable = () => {
     return (
         <div>
             <h1>Vehicle Rental Inquiry</h1>
-            <table>
+            <table className='container1'>
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -44,11 +44,11 @@ const VehicleTable = () => {
                         <th>Vehicles</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='tbody'>
                     {vehicles.map((vehicle, index) => (
                         <tr key={index}>
                             <td>{vehicle.date}</td>
-                            <td>{vehicle.from}</td>
+                             <td>{vehicle.from}</td>
                             <td>{vehicle.to}</td>
                             <td>{vehicle.name}</td>
                             <td>{vehicle.phoneNumber}</td>

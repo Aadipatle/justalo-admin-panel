@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Buses() {
     const [data, setData] = useState([]);
     let {userId}=useParams()
-
+ 
     useEffect(() => {
         async function getData() {
           try {
