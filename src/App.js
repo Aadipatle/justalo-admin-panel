@@ -19,97 +19,45 @@ import SingleDriver from './Components/driver/SingleDriver';
 import RentVehicle from './Components/vehicles/RentVehicle';
 import TicketPage from './Components/tickets/TicketPage';
 import PaymentHistoryPage from './Components/paymentHistory/PaymentHistory';
- 
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVendors } from './app/reducers/VendorSlice';
+import BankDetailsForm from './Components/bankDetails/BankDetailsForm';
+import PaymentDetails from './Components/bankDetails/BankDetailsPage';
+
 function App() {
-  const token = sessionStorage.getItem('token');
-
-      const [data, setData] = useState([]);
-      const [rent, setRent] = useState([]);
-
-    useEffect(() => {
-        async function getData() {
-          try {
-            let url = 'http://68.183.87.102:8080/AllVendor';
-            let token = sessionStorage.getItem('token') 
-    
-            let response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                    'Content-Type': 'application/json'  
-                }
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-    
-            let emp = await response.json();
-            setData(emp);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-        }
-        getData();
-    }, []);
-    useEffect(() => {
-        async function getData() {
-          try {
-            let url = 'http://68.183.87.102:8080/getRentdetails';
-            let token = sessionStorage.getItem('token') 
-    
-            let response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                    'Content-Type': 'application/json'  
-                }
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-    
-            let emp = await response.json();
-            setRent(emp);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-        }
-        getData();
-    }, []);
-
   return (
     <>
       <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/*"
-          element={
-            <PrivateRoute>
-              <Admin />
-            </PrivateRoute>
-          }
-        >
-          <Route path="" element={<Dashboard allvendor={data} rent={rent}/>} />
-          <Route path="users" element={<EmpList />} />
-          <Route path="vendors" element={<Vendors dat={data}/>} />
-          <Route path="vendors/:vendorId" element={<Vendor vendor={data}/>} />
-          <Route path="users/:userId" element={<User />} />
-          <Route path="city" element={<CityForm/>} />
-          <Route path="citylist" element={<CityList/>} />
-          <Route path="driver/:userId" element={<Driver/>} />
-          <Route path="singledriver/:userId" element={<SingleDriver/>} />
-          <Route path="bus/:userId" element={<Buses/>} />
-          <Route path="rentvehicles" element={<RentVehicle />} />
-          <Route path="tickets" element={<TicketPage />} />
-          <Route path="paymenthistory" element={<PaymentHistoryPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/*"
+            element={
+              <PrivateRoute>
+                <Admin />
+              </PrivateRoute>
+            }
+          >
+            <Route path="" element={<Dashboard  />} />
+            <Route path="users" element={<EmpList />} />
+            <Route path="vendors" element={<Vendors />} />
+            <Route path="vendors/:vendorId" element={<Vendor />} />
+            <Route path="users/:userId" element={<User />} />
+            <Route path="city" element={<CityForm />} />
+            <Route path="citylist" element={<CityList />} />
+            <Route path="driver/:userId" element={<Driver />} />
+            <Route path="singledriver/:userId" element={<SingleDriver />} />
+            <Route path="bus/:userId" element={<Buses />} />
+            <Route path="rentvehicles" element={<RentVehicle />} />
+            <Route path="tickets" element={<TicketPage />} />
+            <Route path="paymenthistory" element={<PaymentHistoryPage />} />
+            <Route path="addbankdetails" element={<BankDetailsForm />} />
+            <Route path="bankdetailspage" element={<PaymentDetails />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

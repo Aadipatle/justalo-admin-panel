@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Dashboard.css'
 
 import { FaUsers, FaIndianRupeeSign, FaTicketSimple, FaCar, FaTable } from "react-icons/fa6";
 import { FaHospitalUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVehicles } from '../../app/reducers/vehicleSlice';
+import { fetchVendors } from '../../app/reducers/VendorSlice';
 
-function Dashboard({allvendor,rent}){
+function Dashboard(){
   let navigate = useNavigate()
+  const dispatch = useDispatch();
+
+
+  const { vehicles } = useSelector((state) => state.vehicles);
+  const { data } = useSelector(state => state.vendors);
+
+  useEffect(() => {
+     
+          dispatch(fetchVehicles());
+      
+      dispatch(fetchVendors());
+  }, [dispatch]);
 
   return (
     <>
@@ -22,7 +37,7 @@ function Dashboard({allvendor,rent}){
             </div>
             <div className="request">
               <h4>Total Vendors</h4>
-              <h6 className='a'>{allvendor.length}</h6>
+              <h6 className='a'>{data.length}</h6>
               <button onClick={() => navigate('vendors')}>view➡</button>
               <FaHospitalUser className='img' />
             </div>
@@ -44,7 +59,7 @@ function Dashboard({allvendor,rent}){
             </div>
             <div className="request request1">
               <h4>Rent Vehicles</h4>
-              <h6 className='a'>{rent.length}</h6>
+              <h6 className='a'>{vehicles.length}</h6>
               <button onClick={() => navigate('rentvehicles')}>view➡</button>
               <FaUsers className='img' />
             </div>

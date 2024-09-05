@@ -1,64 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVendors, verifyVendor } from '../../app/reducers/VendorSlice';
 import { Link } from 'react-router-dom';
+
 function Vendors() {
-    const [data, setData] = useState([]);
-    let navigate = useNavigate()
+    const dispatch = useDispatch();
+    const { data, status, error } = useSelector(state => state.vendors);
+
     useEffect(() => {
-        async function getData() {
-          try {
-            let url = 'http://68.183.87.102:8080/AllVendor';
-            let token = sessionStorage.getItem('token') 
-    
-            let response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`, 
-                    'Content-Type': 'application/json'  
-                }
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-    
-            let emp = await response.json();
-            setData(emp);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-        }
-        getData();
-    }, []);
+        dispatch(fetchVendors());
+    }, [dispatch]);
 
-    const handleVerify = async (id, status) => {
-        try {
-            let url = `http://68.183.87.102:8080/markVerified/${id}`;
-            let token = sessionStorage.getItem('token');
-
-            let response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ verification_status: status }) 
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            let updatedData = await response.json();
-
-            setData(prevData => prevData.map(item =>
-                item.id === id ? { ...item, verification_status: updatedData.verification_status } : item
-            ));
-        } catch (error) {
-            console.error('Error verifying data:', error);
-        }
+    const handleVerify = (id, status) => {
+        dispatch(verifyVendor({ id, status }));
     };
- 
+
+    if (status === 'loading') {
+        return <div>Loading...</div>;
+    }
+
+    if (status === 'failed') {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <>
             <div className="container">
@@ -80,18 +44,17 @@ function Vendors() {
                             {data.map((item, index) => (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
-                                   <td> <Link to={`/vendors/${item.id}`}>
-                                        {item.username}
-                                    </Link>
+                                    <td>
+                                        <Link to={`/vendors/${item.id}`}>
+                                            {item.username}
+                                        </Link>
                                     </td>
                                     <td>{item.phone_number}</td>
                                     <td>{item.email}</td>
                                     <td>{item.organization_name}</td>
                                     <td>{item.address}</td>
-                                    <td>{item.verification_status ? '☑' :'❌'}</td>
-                                    <td> <button onClick={() => handleVerify(item.id, true)}>Verify</button>
-                                 </td>
-
+                                    <td>{item.verification_status ? '☑' : '❌'}</td>
+                                    <td><button onClick={() => handleVerify(item.id, true)}>Verify</button></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -101,6 +64,5 @@ function Vendors() {
         </>
     );
 }
-
 
 export default Vendors;

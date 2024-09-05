@@ -1,70 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchVehicles } from '../../app/reducers/vehicleSlice';
 
 const VehicleTable = () => {
-    const [vehicles, setVehicles] = useState([]);
+    const dispatch = useDispatch();
+    const { vehicles, status, error } = useSelector((state) => state.vehicles);
 
     useEffect(() => {
-        async function getData() {
-            try {
-                let url = 'http://68.183.87.102:8080/getRentdetails';
-                let token = sessionStorage.getItem('token');
-    
-                let response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`, 
-                        'Content-Type': 'application/json'  
-                    }
-                });
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-    
-                let emp = await response.json();
-                setVehicles(emp);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+        if (status === 'idle') {
+            dispatch(fetchVehicles());
         }
-        getData();
-    }, []);
+    }, [dispatch, status]);
 
     return (
-        <div>
+        <div className='container'>
             <h1>Vehicle Rental Inquiry</h1>
-            <table className='container1'>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Vehicles</th>
-                    </tr>
-                </thead>
-                <tbody className='tbody'>
-                    {vehicles.map((vehicle, index) => (
-                        <tr key={index}>
-                            <td>{vehicle.date}</td>
-                             <td>{vehicle.from}</td>
-                            <td>{vehicle.to}</td>
-                            <td>{vehicle.name}</td>
-                            <td>{vehicle.phoneNumber}</td>
-                            <td>
-                                <ul>
-                                    {vehicle.vehicles.map((v, idx) => (
-                                        <li key={idx} style={{listStyle:'none'}}>
-                                             {v.model} (Seat {v.make}) - Qty: {v.quantity}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </td>
+            {status === 'loading' && <p>Loading...</p>}
+            {status === 'failed' && <p>Error: {error}</p>}
+            {status === 'succeeded' && (
+                <table className='container1'>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Vehicles</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className='tbody'>
+                        {vehicles.map((vehicle, index) => (
+                            <tr key={index}>
+                                <td>{vehicle.date}</td>
+                                <td>{vehicle.from}</td>
+                                <td>{vehicle.to}</td>
+                                <td>{vehicle.name}</td>
+                                <td>{vehicle.phoneNumber}</td>
+                                <td>
+                                    <ul>
+                                        {vehicle.vehicles.map((v, idx) => (
+                                            <li key={idx} style={{listStyle:'none'}}>
+                                                {v.model} (Seat {v.make}) - Qty: {v.quantity}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 };

@@ -1,64 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDriversByVendor, unverifyDriver, verifyDriver } from '../../app/reducers/VendorSlice'; // Import the necessary actions
 
 function Driver() {
-    const [data, setData] = useState([]);
-    let { userId } = useParams();
+    const { userId } = useParams();
+    const dispatch = useDispatch();
+    const {drivers} = useSelector(state => state.vendors);
+    const loading = useSelector(state => state.vendors.loading);
+    const error = useSelector(state => state.vendors.error);
 
     useEffect(() => {
-        async function getData() {
-            try {
-                let url = `http://68.183.87.102:8080/AllDriverByPerticularVendor/${userId}`;
-                let token = sessionStorage.getItem('token');
-
-                let response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                let emp = await response.json();
-                setData(emp);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        getData();
-    }, [userId]);
+        dispatch(fetchDriversByVendor(userId));
+    }, [dispatch, userId]);
 
     const handleVerify = async (id, currentStatus) => {
-        try {
-            let url = `http://68.183.87.102:8080/verifieddriver/${id}`;
-            let token = sessionStorage.getItem('token');
-            let status = !currentStatus;  
-
-            let response = await fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ verification_status: status })
-            });
-console.log(response)
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            // Update the data state with the new verification status
-            setData(prevData => prevData.map(item =>
-                item.id === id ? { ...item, verification_status: status } : item
-            ));
-        } catch (error) {
-            console.error('Error verifying data:', error);
-        }
+        const newStatus = !currentStatus;
+        dispatch(verifyDriver({ driverId: id, status: newStatus }));
     };
+    const handleunVerify = async (id, currentStatus) => {
+        const newStatus = !currentStatus;
+        dispatch(unverifyDriver({ driverId: id, status: newStatus }));
+    };
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
 
     return (
         <div className="container">
@@ -77,7 +48,7 @@ console.log(response)
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => (
+                        {drivers.map((item, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>
@@ -90,10 +61,16 @@ console.log(response)
                                 <td>{item.license_no}</td>
                                 <td>{item.address}</td>
                                 <td>{item.verification_status ? '☑' : '❌'}</td>
-                                <td>
-                                    <button onClick={() => handleVerify(item.id, item.verification_status)}>
-                                        {item.verification_status ? 'Unverify' : 'Verify'}
-                                    </button>
+                                <td>{
+                                    item.verification_status ?  <button style={{width:'90px'}} onClick={() => handleunVerify(item.id, item.verification_status)}>
+                                    unverify
+                                 </button> : <button style={{width:'90px'}} onClick={() => handleVerify(item.id, item.verification_status)}>
+                                 verify
+                              </button>
+
+                                }
+                                    
+                                   
                                 </td>
                             </tr>
                         ))}
