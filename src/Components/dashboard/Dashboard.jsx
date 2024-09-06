@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import './Dashboard.css'
 
-import { FaUsers, FaIndianRupeeSign, FaTicketSimple, FaCar, FaTable } from "react-icons/fa6";
+import { FaUsers, FaIndianRupeeSign, FaTicketSimple, FaCar, FaTable, FaCarSide, FaCity } from "react-icons/fa6";
 import { FaHospitalUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVehicles } from '../../app/reducers/vehicleSlice';
 import { fetchVendors } from '../../app/reducers/VendorSlice';
+import { fetchCityList } from '../../app/reducers/citySlice';
 
 function Dashboard(){
   let navigate = useNavigate()
@@ -15,12 +16,13 @@ function Dashboard(){
 
   const { vehicles } = useSelector((state) => state.vehicles);
   const { data } = useSelector(state => state.vendors);
+  const { cities } = useSelector((state) => state.city);
 
   useEffect(() => {
-     
-          dispatch(fetchVehicles());
-      
+      dispatch(fetchVehicles());
       dispatch(fetchVendors());
+      dispatch(fetchCityList());
+
   }, [dispatch]);
 
   return (
@@ -43,7 +45,7 @@ function Dashboard(){
             </div>
             <div className="request">
               <h4>Total Tickets</h4>
-              <h6 className='a'>3</h6>
+              <h6 className='a'>1</h6>
               <button onClick={() => navigate('tickets')}>view➡</button>
               <FaTicketSimple className='img' />
             </div>
@@ -61,7 +63,7 @@ function Dashboard(){
               <h4>Rent Vehicles</h4>
               <h6 className='a'>{vehicles.length}</h6>
               <button onClick={() => navigate('rentvehicles')}>view➡</button>
-              <FaUsers className='img' />
+              <FaCarSide className='img' />
             </div>
             
           </div>
@@ -81,10 +83,10 @@ function Dashboard(){
               <FaCar className='img' />
             </div>
             <div className="request">
-              <h4>Total Counter</h4>
-              <h6 className='a'>200</h6>
-              <button>view➡</button>
-              <FaTable className='img' />
+              <h4>Boarding Points</h4>
+              <h6 className='a'>{cities.length}</h6>
+              <button onClick={() => navigate('citylist')}>view➡</button>
+              <FaCity className='img' />
             </div>
           </div>
         </div>

@@ -77,7 +77,7 @@ function Emplist() {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <Link to={`/users/${item.id}`}>
-                                    {item.name}
+                                    {item.email}
                                 </Link>
                                     <td>{item.contactNumber}</td>
                                     <td>{item.email}</td>

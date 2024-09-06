@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import './PaymentHistory.css';
 
 const PaymentHistoryPage = () => {
   const [filter, setFilter] = useState('all');
@@ -7,6 +6,7 @@ const PaymentHistoryPage = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
 
   const payments = [
     { id: 1, name: 'John Doe', from: 'City A', to: 'City B', date: '2024-07-01', price: 100, status: 'success' },
@@ -48,25 +48,45 @@ const PaymentHistoryPage = () => {
       });
     }
 
+    // Filter by search query
+    if (searchQuery) {
+      filteredPayments = filteredPayments.filter(payment =>
+        payment.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
     return filteredPayments;
   };
 
   useEffect(() => {
     const total = getFilteredPayments().reduce((acc, payment) => acc + payment.price, 0);
     setTotalPrice(total);
-  }, [filter, timeFilter, startDate, endDate]);
+  }, [filter, timeFilter, startDate, endDate, searchQuery]);
 
   const filteredPayments = getFilteredPayments();
 
   return (
     <div>
       <h1>Payment History</h1>
+
+      {/* Search bar */}
+      <div className='search-bar'>
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+      <br />
+
       <div className='tbtn'>
         <button className='btn1' onClick={() => setFilter('all')}>All</button>
         <button className='btn2' onClick={() => setFilter('success')}>Success</button>
         <button className='btn3' onClick={() => setFilter('canceled')}>Canceled</button>
       </div>
       <br />
+
       <div className='time-filter'>
         <select onChange={(e) => setTimeFilter(e.target.value)} value={timeFilter}>
           <option value="all">All Time</option>
@@ -76,6 +96,7 @@ const PaymentHistoryPage = () => {
         </select>
       </div>
       <br />
+
       <div className='date-range-filter'>
         <label>
           From:
@@ -95,7 +116,9 @@ const PaymentHistoryPage = () => {
         </label>
       </div>
       <br />
+
       <h2>Total Amount: <span>&#8377;</span>{totalPrice}</h2>
+
       <table>
         <thead>
           <tr>
