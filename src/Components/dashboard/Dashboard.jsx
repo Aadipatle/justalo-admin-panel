@@ -9,7 +9,7 @@ import { fetchVehicles } from '../../app/reducers/vehicleSlice';
 import { fetchVendors } from '../../app/reducers/VendorSlice';
 import { fetchCityList } from '../../app/reducers/citySlice';
 
-function Dashboard(){
+function Dashboard() {
   let navigate = useNavigate()
   const dispatch = useDispatch();
 
@@ -19,10 +19,9 @@ function Dashboard(){
   const { cities } = useSelector((state) => state.city);
 
   useEffect(() => {
-      dispatch(fetchVehicles());
-      dispatch(fetchVendors());
-      dispatch(fetchCityList());
-
+    dispatch(fetchVendors());
+    dispatch(fetchVehicles());
+    dispatch(fetchCityList());
   }, [dispatch]);
 
   return (
@@ -65,7 +64,7 @@ function Dashboard(){
               <button onClick={() => navigate('rentvehicles')}>view➡</button>
               <FaCarSide className='img' />
             </div>
-            
+
           </div>
         </div>
         <div className="admin-hospital">
